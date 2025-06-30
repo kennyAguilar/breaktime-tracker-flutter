@@ -735,11 +735,6 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                                               ? Colors.orange
                                               : Colors.green,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: isTablet
-                                          ? 16
-                                          : isMobile
-                                              ? 12
-                                              : 14,
                                     ),
                                   ),
                                 ),
@@ -784,11 +779,7 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                               Text(
                                 'Empleados en Descanso',
                                 style: TextStyle(
-                                  fontSize: isTablet
-                                      ? 24
-                                      : isMobile
-                                          ? 18
-                                          : 20,
+                                  fontSize: isTablet ? 22 : 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
@@ -808,8 +799,8 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                                     'MODO DEMO',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: isTablet ? 12 : 10,
                                       fontWeight: FontWeight.bold,
+                                      fontSize: isTablet ? 14 : 12,
                                     ),
                                   ),
                                 ),
@@ -820,11 +811,11 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                                   vertical: isTablet ? 8 : 6,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: const Color(0xFF4B5563),
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Text(
-                                  '${_employeesOnBreak.length}',
+                                  '${_employeesOnBreak.length} en descanso',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -839,30 +830,20 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                             child: _employeesOnBreak.isEmpty
                                 ? Center(
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Icon(
-                                          Icons.coffee,
-                                          size: isTablet
-                                              ? 80
-                                              : isMobile
-                                                  ? 48
-                                                  : 64,
-                                          color: Colors.grey,
+                                          Icons.check_circle_outline,
+                                          size: isTablet ? 80 : 60,
+                                          color: Colors.green,
                                         ),
                                         SizedBox(height: isTablet ? 20 : 16),
                                         Text(
-                                          'No hay empleados en descanso',
+                                          'Nadie está en descanso',
                                           style: TextStyle(
-                                            fontSize: isTablet
-                                                ? 18
-                                                : isMobile
-                                                    ? 14
-                                                    : 16,
+                                            fontSize: isTablet ? 20 : 16,
                                             color: Colors.grey,
                                           ),
-                                          textAlign: TextAlign.center,
                                         ),
                                       ],
                                     ),
@@ -1003,92 +984,53 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
 
                   // Sección de ayuda para demo adaptativa
                   if (_demoMode)
-                    Container(
-                      margin: EdgeInsets.symmetric(
+                    Padding(
+                      padding: EdgeInsets.symmetric(
                         horizontal: isTablet
                             ? 48
                             : isMobile
                                 ? 16
                                 : 24,
                       ),
-                      padding: EdgeInsets.all(isTablet ? 20 : 16),
-                      decoration: BoxDecoration(
-                        color: Colors.orange.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.orange, width: 1),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.info_outline,
-                                color: Colors.orange,
-                                size: isTablet ? 24 : 20,
+                      child: Container(
+                        padding: EdgeInsets.all(isTablet ? 20 : 16),
+                        decoration: BoxDecoration(
+                          color: Colors.blue.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.blue),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Modo Demo Activo',
+                              style: TextStyle(
+                                fontSize: isTablet ? 18 : 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
                               ),
-                              SizedBox(width: isTablet ? 12 : 8),
-                              Text(
-                                'Modo Demo - Códigos de Prueba',
-                                style: TextStyle(
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: isTablet
-                                      ? 16
-                                      : isMobile
-                                          ? 12
-                                          : 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: isTablet ? 12 : 8),
-                          Text(
-                            'Prueba estos códigos de tarjeta:',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: isTablet
-                                  ? 14
-                                  : isMobile
-                                      ? 12
-                                      : 13,
                             ),
-                          ),
-                          SizedBox(height: isTablet ? 6 : 4),
-                          ...[
-                            '001 - Juan Pérez',
-                            '002 - María García',
-                            '003 - Carlos López',
-                            '004 - Ana Martínez',
-                            '9636979 - Kenny Aguilar (Real)',
-                            'HP30 - Usuario Test',
-                            'VS26 - Demo User',
-                            'CB29 - Test Demo'
-                          ]
-                              .map((code) => Text(
-                                    '• $code',
-                                    style: TextStyle(
-                                      color: Colors.white60,
-                                      fontSize: isTablet
-                                          ? 12
-                                          : isMobile
-                                              ? 10
-                                              : 11,
+                            SizedBox(height: isTablet ? 12 : 8),
+                            Text(
+                              'La conexión con la base de datos falló. Puedes usar estos códigos de tarjeta para probar:',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: isTablet ? 16 : 14,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: isTablet ? 16 : 12),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              alignment: WrapAlignment.center,
+                              children: _demoEmployees
+                                  .map(
+                                    (e) => Chip(
+                                      label: Text(e['tarjeta']),
+                                      backgroundColor: const Color(0xFF374151),
+                                      labelStyle:
+                                          const TextStyle(color: Colors.white),
                                     ),
-                                  ))
-                              .toList(),
-                        ],
-                      ),
-                    ),
-
-                  // Espaciado inferior para evitar corte
-                  SizedBox(height: isTablet ? 20 : 16),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+                                  )
+                                  .toList(),
+                         
