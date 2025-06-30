@@ -573,7 +573,7 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
+                          color: Colors.black.withAlpha(51), // Corrección de withOpacity
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),
@@ -692,10 +692,10 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                             decoration: BoxDecoration(
                               color: _statusMessage.contains('Error') ||
                                       _statusMessage.contains('❌')
-                                  ? Colors.red.withValues(alpha: 0.2)
+                                  ? Colors.red.withAlpha(51) // Corrección de withOpacity
                                   : _statusMessage.contains('⚠️')
-                                      ? Colors.orange.withValues(alpha: 0.2)
-                                      : Colors.green.withValues(alpha: 0.2),
+                                      ? Colors.orange.withAlpha(51) // Corrección de withOpacity
+                                      : Colors.green.withAlpha(51), // Corrección de withOpacity
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(
                                 color: _statusMessage.contains('Error') ||
@@ -995,7 +995,7 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                       child: Container(
                         padding: EdgeInsets.all(isTablet ? 20 : 16),
                         decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
+                          color: Colors.blue.withAlpha(25), // Corrección: withOpacity -> withAlpha
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(color: Colors.blue),
                         ),
@@ -1026,11 +1026,24 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
                               children: _demoEmployees
                                   .map(
                                     (e) => Chip(
-                                      label: Text(e['tarjeta']),
+                                      label: Text(e['tarjeta'] ?? ''),
                                       backgroundColor: const Color(0xFF374151),
                                       labelStyle:
                                           const TextStyle(color: Colors.white),
                                     ),
                                   )
                                   .toList(),
-                         
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
