@@ -287,7 +287,7 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
 
         setState(() {
           _statusMessage =
-              '✅ $employeeName ha regresado del descanso (${duracionMinutos} min)';
+              '✅ $employeeName ha regresado del descanso ($duracionMinutos min)';
         });
       } else {
         // Registrar salida a descanso
@@ -361,7 +361,7 @@ class _CardReaderScreenState extends State<CardReaderScreen> {
 
       setState(() {
         _statusMessage =
-            '✅ DEMO: $employeeName ha regresado del descanso (${duracionMinutos} min)';
+            '✅ DEMO: $employeeName ha regresado del descanso ($duracionMinutos min)';
       });
     } else {
       // Registrar salida
