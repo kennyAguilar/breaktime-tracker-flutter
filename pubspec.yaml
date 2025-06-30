@@ -1,0 +1,32 @@
+name: breaktime_tracker
+description: Sistema de control de descansos con lector de tarjetas
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Supabase
+  supabase_flutter: ^2.3.0
+  
+  # Formateo de fechas
+  intl: ^0.18.1
+  
+  # Para mantener la pantalla activa
+  wakelock_plus: ^1.2.0
+  
+  # Iconos de Material Design
+  cupertino_icons: ^1.0.5
+  http: ^1.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
